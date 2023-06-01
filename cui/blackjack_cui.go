@@ -13,6 +13,7 @@ func Run() {
 		doPlayerTurn()
 		doDealerTurn()
 		showResult()
+		break
 	}
 }
 
