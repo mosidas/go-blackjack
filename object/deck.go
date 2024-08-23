@@ -9,6 +9,7 @@ import (
 type Deck struct {
 	deck       []Card
 	deckNumber int
+	rng        *rand.Rand // ローカルなランダム生成器を追加
 }
 
 // NewDeck creates a new Deck
@@ -16,6 +17,7 @@ func NewDeck() *Deck {
 	return &Deck{
 		deck:       []Card{},
 		deckNumber: 1,
+		rng:        rand.New(rand.NewSource(time.Now().UnixNano())),
 	}
 }
 
@@ -36,8 +38,7 @@ func (d *Deck) Create() {
 	}
 
 	// Shuffle the deck
-	rand.Seed(time.Now().UnixNano())
-	rand.Shuffle(len(d.deck), func(i, j int) {
+	d.rng.Shuffle(len(d.deck), func(i, j int) {
 		d.deck[i], d.deck[j] = d.deck[j], d.deck[i]
 	})
 }
