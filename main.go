@@ -1,9 +1,11 @@
 package main
 
 import (
-	cui "blackjack/cui"
+	"blackjack/cui"
 )
 
+// main function serves as the entry point for the Blackjack game
 func main() {
-	cui.Run()
+	bjCui := &cui.BlackjackCui{}
+	bjCui.Play()
 }
