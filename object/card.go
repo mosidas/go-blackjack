@@ -32,13 +32,13 @@ func (c Card) GetText() string {
 	var mark string
 	switch c.suit {
 	case Heart:
-		mark = "♡"
+		mark = "ハート"
 	case Crab:
-		mark = "♣"
+		mark = "クラブ"
 	case Spade:
-		mark = "♠"
+		mark = "スペード"
 	case Diamond:
-		mark = "♦"
+		mark = "ダイヤ"
 	default:
 		mark = ""
 	}

@@ -59,7 +59,7 @@ func DoPlayerTurns(scanner *bufio.Scanner, gameManager *object.Game, player *obj
 			return
 		case 4:
 			// スプリット
-			DoSplitedPlayerTurns(scanner, gameManager, player)
+			DoSplitPlayerTurns(scanner, gameManager, player)
 			return
 		}
 
@@ -72,12 +72,12 @@ func DoPlayerTurns(scanner *bufio.Scanner, gameManager *object.Game, player *obj
 
 	// バーストしてたらゲームオーバー。
 	if hand.IsBust() {
-		showResultBust(gameManager, player, hand)
+		showResultBust(player, hand)
 	}
 }
 
-// DoSplitedPlayerTurns executes the turns for a player who has split their hand
-func DoSplitedPlayerTurns(scanner *bufio.Scanner, gameManager *object.Game, player *object.Player) {
+// DoSplitPlayerTurns executes the turns for a player who has split their hand
+func DoSplitPlayerTurns(scanner *bufio.Scanner, gameManager *object.Game, player *object.Player) {
 	player.Split(gameManager.GetDeck())
 	fmt.Printf("%sはスプリットした！\n", player.GetName())
 	fmt.Printf("%sの手札：", player.GetName())
@@ -116,7 +116,7 @@ func DoSplitedPlayerTurns(scanner *bufio.Scanner, gameManager *object.Game, play
 		}
 
 		if hand.IsBust() {
-			showResultBust(gameManager, player, hand)
+			showResultBust(player, hand)
 		}
 		i++
 	}
@@ -132,7 +132,7 @@ func getPlayerAction(scanner *bufio.Scanner, gameManager *object.Game, player *o
 		if player.CanSplit() {
 			fmt.Print(" スプリット:4")
 		}
-		if canDoubledown(gameManager, player) {
+		if canDoubleDown(gameManager, player) {
 			fmt.Print(" ダブルダウン:5")
 		}
 		fmt.Print(" →   ")
@@ -146,7 +146,7 @@ func getPlayerAction(scanner *bufio.Scanner, gameManager *object.Game, player *o
 	}
 }
 
-func canDoubledown(gameManager *object.Game, player *object.Player) bool {
+func canDoubleDown(gameManager *object.Game, player *object.Player) bool {
 	// TODO: Implement this logic
 	return false
 }
@@ -157,7 +157,7 @@ func canSurrender(gameManager *object.Game, player *object.Player) bool {
 }
 
 // showResultBust displays the result when a player busts
-func showResultBust(gameManager *object.Game, player *object.Player, hand *object.Hand) {
+func showResultBust(player *object.Player, hand *object.Hand) {
 	fmt.Printf("%sの点数：%d\n", player.GetName(), hand.GetScore())
 	time.Sleep(1 * time.Second)
 	fmt.Println("バースト！")

@@ -4,7 +4,6 @@ import (
 	"blackjack/object"
 	"bufio"
 	"fmt"
-	"os"
 	"strconv"
 )
 
@@ -72,10 +71,4 @@ func setDefaultMoney(scanner *bufio.Scanner) int {
 		}
 		fmt.Println("10～100000の整数値を入力してください")
 	}
-}
-
-func main() {
-	scanner := bufio.NewScanner(os.Stdin)
-	settings := GetGameSettings(scanner)
-	fmt.Printf("ゲーム設定: %+v\n", settings)
 }

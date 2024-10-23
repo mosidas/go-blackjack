@@ -24,8 +24,8 @@ func DealInitialHand(gameManager *object.Game) {
 
 	// ディーラーの手札を表示する。
 	fmt.Print("ディーラーの手札：")
-	dcards := gameManager.GetDealer().GetHands()[0].ToList()
-	fmt.Printf("%s ??\n", dcards[0].GetText())
+	dealerCards := gameManager.GetDealer().GetHands()[0].ToList()
+	fmt.Printf("%s ??\n", dealerCards[0].GetText())
 }
 
 // DoDealerTurns displays and executes the dealer's turn
